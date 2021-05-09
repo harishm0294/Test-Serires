@@ -7,6 +7,7 @@ use App\Student;
 use App\category;
 use App\Addquestion;
 use App\examsubject;
+use App\Aexam;
 use App\result;
 use App\ref_result;
 use response;
@@ -40,5 +41,15 @@ class WelcomeController extends Controller
 
         $category = category::with('exam')->where('status',1)->get();
         return view('welcome', compact('category'));
+    }
+
+    /**
+     * Show the Exam Detials
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function examDetails($id) {
+        $exams = Aexam::with('subject')->where('category', $id)->get();
+        dd($exams);
     }
 }

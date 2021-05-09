@@ -48,11 +48,8 @@ Route::get('tt',function(){
       $users = DB::connection($dbName);
 });
 
-    /* Route::get('/', function () {
-
-        return view('welcome');
-    }); */
     Route::get('/', 'WelcomeController@home');
+    Route::get('/exam/detail/{id}', 'WelcomeController@examDetails');
 
     Route::get('service/price', function () {
         return view('our_service_price');
@@ -126,70 +123,3 @@ Route::get('tt',function(){
 Route::post('logout', 'AdminController@Logout');
    
 Route::get('/comingsoon', 'AdminController@comingsoon');
-
-
-Route::get('/Test', function () {
-    mail("sunny6142@gmail.com", "AIC", "Testing", "Header" );
- 
- /*   $result = DB::table('exam_question')
-    ->leftJoin('result', 'result.ques_id', '=', 'exam_question.id')
-    ->where('exam_question.examcode', '=', 30)
-    ->get();
-    dump($result); */
- //   ->get();
-
-//    $result = DB::table('result')
-//    ->leftJoin('exam_question', 'exam_question.id', '=', 'result.ques_id')
-//    ->whereNull('result.student_id')
-//    ->select('result.*' ,  'exam_question.*')
-    
-//      ->where(['exam_question.examcode'  => 30, 
-//           'result.student_id' => 'sunny6142' ])
-//    ->whereNull('result.student_id')
- //   ->where(['exam_question.examcode'  => 30, 
-  //           'result.student_id' => 'sunny6142' ])
-            
-
-    return;
-
-//    ->whereIn(['exam_question.examcode'  => 30,
-//    'attendance_student', '=', null])//->sum('result.givenmarks');
-
-    $users = DB::table('users')
-    ->join('result', 'result.student_id', '=', 'users.student_id')
-    ->join('exam_question', 'result.ques_id', '=', 'exam_question.id')
-    ->select('users.*', 'result.*', 'exam_question.*')
-  //  ->select('exam_question.examcode')
-    ->where('users.student_id', '=', 'sunny6142')
-    ->get();
-    dump($users);
-
-    return;
-    $users = DB::table('users')
-    ->join('result', 'result.student_id', '=', 'users.student_id')
-    ->join('exam_question', 'result.ques_id', '=', 'exam_question.id')
-    ->select('users.*', 'result.*', 'exam_question.*')
-  //  ->select('exam_question.examcode')
-    ->where('users.student_id', '=', 'sunny6142')
-    ->get();
-    dump($users);
-});
-
-Route::post('/date',function(Request $req){
-   
-    //dump($req);
- //   $carbon = new Carbon();                  // equivalent to Carbon::now()
- //   $carbon = $carbon->addDays(30);
- /*   echo get_class($carbon); 
-    dump($carbon->toDateTimeString());
-    dump($carbon->diffForHumans());
-    dump(Auth::user()->id);
-    $v = 3;
-    $student = DB::table('users')->orderBy('created_at', 'DESC')->where('admin_id',$v)
-    ->limit(5)
-    ->get();
-   // dump($student);
-    foreach ($student as $user) {
-        dump($user);
-    }  */
-});

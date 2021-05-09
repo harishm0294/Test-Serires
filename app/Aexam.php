@@ -10,10 +10,18 @@ class Aexam extends Model
     protected $table = 'exam';
     
     /**
-     * Get the phone record associated with the user.
+     * Get the category record associated with the exam.
      */
     public function category()
     {
         return $this->hasOne('App\category', 'category', 'id');
+    }
+    
+    /**
+     * Get the phone record associated with the user.
+     */
+    public function subject()
+    {
+        return $this->hasMany('App\examsubject', 'examcode', 'examcode');
     }
 }

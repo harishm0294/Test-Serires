@@ -136,7 +136,7 @@
       <div class="container">
         <div class="row">
           @foreach ($category as $cat)
-            <div class="col-md-3 mt-5">
+            <div class="col-lg-4 col-md-3 col-sm-1 mt-5">
               <div class="exam-block">
                 <h4>{{$cat->category}}</h4>
                 @if (!empty($cat->exam))
@@ -144,7 +144,8 @@
                 @else
                   <p>No Test Available</p>
                 @endif
-                <span class="price-block"><b>Price: ₹{{$cat->fee}}</b></span>
+                <p><b>Price: ₹{{$cat->fee}}</b></p>
+                <a href="{{url('/exam/detail/'.$cat->id)}}" class="price-block">View Details</a>
               </div>
             </div>
           @endforeach
@@ -167,6 +168,9 @@
         padding: 6px;
         color: #ffffff;
         border-radius: 5px;
+      }
+      .price-block:hover {
+        color: #21396b; text-decoration: none; font-weight: none;
       }
     </style>
     <section class="bg-primary" id="about">
