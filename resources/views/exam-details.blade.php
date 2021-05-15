@@ -13,17 +13,17 @@
 	      <title>Test Series &mdash; Conduct you Exam with Us</title>
 
     <!-- Bootstrap core CSS -->
-    <link href="landing/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="{{url('/landing/vendor/bootstrap/css/bootstrap.min.css')}}" rel="stylesheet">
      <!-- Custom fonts for this template -->
-    <link href="landing/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="{{ url('/landing/vendor/font-awesome/css/font-awesome.min.css')}}" rel="stylesheet" type="text/css">
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
     <link href='https://fonts.googleapis.com/css?family=Merriweather:400,300,300italic,400italic,700,700italic,900,900italic' rel='stylesheet' type='text/css'>
 
     <!-- Plugin CSS -->
-    <link href="landing/vendor/magnific-popup/magnific-popup.css" rel="stylesheet">
+    <link href="{{url('landing/vendor/magnific-popup/magnific-popup.css')}}" rel="stylesheet">
 
     <!-- Custom styles for this template -->
-    <link href="landing/css/creative.min.css" rel="stylesheet">
+    <link href="{{url('landing/css/creative.min.css')}}" rel="stylesheet">
  
   </head>
 
@@ -66,10 +66,7 @@
           </div>
           <div class="modal-footer text-center">
             <p>Not a member? <a href="#">Sign Up</a></p>
-            <p>Forgot <a href="#">Password?</a></p>
-            {{-- <a href="{{ url('auth/google') }}" style="margin-top: 20px;" class="btn btn-lg btn-success btn-block">
-              <strong>Login With Google</strong>
-            </a> --}}
+            <p>Forgot <a href="#">Password?</a></p> 
           </div>
         </div>
         
@@ -93,10 +90,8 @@
             @else
             <!-- data-toggle="modal" data-target="#studentlogin" -->
               <li class="nav-item">
-                <a class="nav-link js-scroll-trigger" href="#" data-toggle="modal" data-target="#studentlogin" >Student</a>
-                {{-- <a class="nav-link js-scroll-trigger" href="{{ url('/login') }}" >Student</a> --}}
+                <a class="nav-link js-scroll-trigger" href="{{ url('/login') }}" >Student</a>
               </li>
-              
               @endauth
             @endif
             <li class="nav-item">
@@ -112,125 +107,49 @@
         </div>
       </div>
     </nav>
-
-    <header class="masthead text-center text-white d-flex">
-      <div class="container my-auto">
-        <div class="row">
-          <div class="col-lg-10 mx-auto">
-            <h1 class="text-uppercase">
-              <strong>Get Your Test Series App Today</strong>
-            </h1>
-            <hr>
-          </div>
-          <div class="col-lg-8 mx-auto">
-            <p class="text-faded mb-5">Test series app practice for your competetive exams.</p>
-            <a class="btn btn-primary btn-xl js-scroll-trigger" href="#about">Find Out More</a>
-          </div>
-        </div>
+    
+    <section class=" text-white" style="background-color: #72d042;">
+      <div class="container text-center">
+        <h2 class="mb-4">{{ $category->category }}</h2>
+        <p class="mb-1"><b>Price: ₹ {{ $category->fee }}</b></p>
       </div>
-    </header>
-    <section id="exam">
+    </section>
+    <section class="">
       <div class="container">
         <div class="row">
           <div class="col-lg-12 text-center">
-            <h2 class="section-heading">Exams</h2>
+            <h2 class="section-heading">Tests</h2>
             <hr class="my-4">
           </div>
         </div>
       </div>
-      <div class="container">
-        <div class="row">
-          @foreach ($category as $cat)
-            <div class="col-lg-4 col-md-3 col-sm-1 mt-5">
-              <div class="exam-block">
-                <h4>{{$cat->category}}</h4>
-                @if (!empty($cat->exam))
-                  <p>{{$cat->exam->count()}} TOTAL TESTS</p>
-                @else
-                  <p>No Test Available</p>
-                @endif
-                <p><b>Price: ₹{{$cat->fee}}</b></p>
-                <a href="{{url('/exam/detail/'.$cat->id)}}" class="price-block">View Details</a>
-              </div>
+      <div class="container text-center">
+        <div class="list-group">
+          <a href="#" class="list-group-item list-group-item-action flex-column align-items-start mb-2">
+            <div class="d-flex w-100 justify-content-between">
+              <h5 class="mb-1">List group item heading</h5>
+              <small>3 days ago</small>
             </div>
-          @endforeach
-        </div>      
-      </div>
-    </section>
-    <style>
-      #exam {
-        background: #f1f4f6;
-      }
-      .exam-block {
-        background-color: rgb(255 255 255);
-        padding: 10px;
-        color: rgb(33 37 41);
-        border-radius: 6px;
-        text-align: center;
-      }
-      .price-block{
-        background-color: #72d042;
-        padding: 6px;
-        color: #ffffff;
-        border-radius: 5px;
-      }
-      .price-block:hover {
-        color: #21396b; text-decoration: none; font-weight: none;
-      }
-    </style>
-    <section class="bg-primary" id="about">
-      <div class="container">
-        <div class="row">
-          <div class="col-lg-8 mx-auto text-center">
-            <h2 class="section-heading text-white">We've got what you need!</h2>
-            <hr class="light my-4">
-            <p class="text-faded mb-4">Test Series has everything you need to start your online Exam and practices for better result!</p>
-            <a class="btn btn-light btn-xl js-scroll-trigger" href="#services">Get Started!</a>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section id="services">
-      <div class="container">
-        <div class="row">
-          <div class="col-lg-12 text-center">
-            <h2 class="section-heading">At Your Service</h2>
-            <hr class="my-4">
-          </div>
-        </div>
-      </div>
-      <div class="container">
-        <div class="row">
-          <div class="col-lg-3 col-md-6 text-center">
-            <div class="service-box mt-5 mx-auto">
-              <i class="fa fa-4x fa-diamond text-primary mb-3 sr-icons"></i>
-              <h3 class="mb-3">Study Material</h3>
-              <p class="text-muted mb-0">We Offer to have Study Material in your Website in any Language Hindi, English etc.</p>
+            <p class="mb-1">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p>
+            <small>Donec id elit non mi porta.</small>
+          </a>
+          <a href="#" class="list-group-item list-group-item-action flex-column align-items-start mb-2">
+            <div class="d-flex w-100 justify-content-between">
+              <h5 class="mb-1">List group item heading</h5>
+              <small class="text-muted">3 days ago</small>
             </div>
-          </div>
-          <div class="col-lg-3 col-md-6 text-center">
-            <div class="service-box mt-5 mx-auto">
-              <i class="fa fa-4x fa-paper-plane text-primary mb-3 sr-icons"></i>
-              <h3 class="mb-3">Publish</h3>
-              <p class="text-muted mb-0">Our Experts will type your Exam and Notes and Publish it in no time.</p>
+            <p class="mb-1">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p>
+            <small class="text-muted">Donec id elit non mi porta.</small>
+          </a>
+          <a href="#" class="list-group-item list-group-item-action flex-column align-items-start mb-2">
+            <div class="d-flex w-100 justify-content-between">
+              <h5 class="mb-1">List group item heading</h5>
+              <small class="text-muted">3 days ago</small>
             </div>
-          </div>
-          <div class="col-lg-3 col-md-6 text-center">
-            <div class="service-box mt-5 mx-auto">
-              <i class="fa fa-4x fa-newspaper-o text-primary mb-3 sr-icons"></i>
-              <h3 class="mb-3">Up to Date</h3>
-              <p class="text-muted mb-0">We update Our System According to your Need.</p>
-            </div>
-          </div>
-          <div class="col-lg-3 col-md-6 text-center">
-            <div class="service-box mt-5 mx-auto">
-              <i class="fa fa-4x fa-heart text-primary mb-3 sr-icons"></i>
-              <h3 class="mb-3">Love</h3>
-              <p class="text-muted mb-0">We Assured you will love our services. We are working hard to provide you the best service!</p>
-            </div>
-          </div>
-        </div>
+            <p class="mb-1">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p>
+            <small class="text-muted">Donec id elit non mi porta.</small>
+          </a>
+        </div>  
       </div>
     </section>
     <section id="contact" class="bg-dark text-white">
@@ -258,16 +177,16 @@
     </section>
 
     <!-- Bootstrap core JavaScript -->
-    <script src="landing/vendor/jquery/jquery.min.js"></script>
-    <script src="landing/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="{{url('landing/vendor/jquery/jquery.min.js')}}"></script>
+    <script src="{{url('landing/vendor/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
 
     <!-- Plugin JavaScript -->
-    <script src="landing/vendor/jquery-easing/jquery.easing.min.js"></script>
-    <script src="landing/vendor/scrollreveal/scrollreveal.min.js"></script>
-    <script src="landing/vendor/magnific-popup/jquery.magnific-popup.min.js"></script>
+    <script src="{{url('landing/vendor/jquery-easing/jquery.easing.min.js')}}"></script>
+    <script src="{{url('landing/vendor/scrollreveal/scrollreveal.min.js')}}"></script>
+    <script src="{{url('landing/vendor/magnific-popup/jquery.magnific-popup.min.js')}}"></script>
 
     <!-- Custom scripts for this template -->
-    <script src="landing/js/creative.min.js"></script>
+    <script src="{{url('landing/js/creative.min.js')}}"></script>
 
   <script>
     // Add Question

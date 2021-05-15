@@ -18,10 +18,18 @@ class Aexam extends Model
     }
     
     /**
-     * Get the phone record associated with the user.
+     * Get the subject record associated with the exam.
      */
     public function subject()
     {
         return $this->hasMany('App\examsubject', 'examcode', 'examcode');
+    }
+
+    /**
+     * Get the question record associated with the exam.
+     */
+    public function question()
+    {
+        return $this->hasMany('App\Addquestion', 'examcode', 'examcode');
     }
 }

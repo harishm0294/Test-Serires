@@ -45,10 +45,10 @@ class LoginController extends Controller
         ]);
 
      //   Auth::guard('web')->setConnection('student');
-
+     
         if(Auth::guard('web')->attempt(['student_id'=> $request->student_id, 'password' => $request->password] , $request->remember))
         {
-            return redirect()->intended(route('home'));
+            return redirect()->intended(route('welcome'));
           //  protected $redirectTo = '/home';
         }
      //   'failed' => 'These credentials do not match our records.';
@@ -67,7 +67,7 @@ class LoginController extends Controller
 
         if(Auth::guard('web')->attempt(['student_id'=> $request->student_id, 'password' => $request->password] , $request->remember))
         {
-            return response()->json(array('login'=> "/home"));
+            return response()->json(array('login'=> "/"));
           //  protected $redirectTo = '/home';
         }
         else{

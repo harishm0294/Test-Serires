@@ -49,7 +49,9 @@ class WelcomeController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function examDetails($id) {
-        $exams = Aexam::with('subject')->where('category', $id)->get();
-        dd($exams);
+        $category = category::where('id',$id)->first();
+        $exams = Aexam::with('subject','question')->where('category', $id)->get();
+        
+        return view('exam-details', compact('exams', 'category'));
     }
 }

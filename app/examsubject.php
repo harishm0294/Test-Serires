@@ -12,7 +12,7 @@ class examsubject extends Model
      * Get the Exam that has a subject.
      */
     public function exam()
-    {
+    { 
         return $this->belongsTo('App\Aexam', 'examcode', 'examcode');
     }
 }

@@ -48,9 +48,12 @@ Route::get('tt',function(){
       $users = DB::connection($dbName);
 });
 
-    Route::get('/', 'WelcomeController@home');
+    Route::get('/', 'WelcomeController@home')->name('welcome');
     Route::get('/exam/detail/{id}', 'WelcomeController@examDetails');
-
+    /* Google Login */
+    Route::get('auth/google', 'Auth\GoogleController@redirectToGoogle');
+    Route::get('auth/google/callback', 'Auth\GoogleController@handleGoogleCallback');
+    /* Google Login */
     Route::get('service/price', function () {
         return view('our_service_price');
     });

@@ -257,6 +257,6 @@ class HomeController extends Controller
     
         if($admin_id) 
         return redirect('/StudentLogin/'.$admin_id);
-        return redirect('/login');
+        return redirect('/');
     }
 }

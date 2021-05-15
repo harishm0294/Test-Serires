@@ -485,14 +485,10 @@ $(function() {
                         <a class="mobile-menu" id="mobile-collapse" href="#!">
                             <i class="ti-menu"></i>
                         </a>
-                      <!--  <a class="mobile-search morphsearch-search" href="#">
-                            <i class="ti-search"></i>
-                        </a> -->
-                        <a href="#">
-                          <!--  <img class="img-fluid" src= '{{ Auth::user()->image }}' alt="Theme-Logo" />  -->
+                        <a href="/home">
                            Test Series
                         </a>
-                        <a class="mobile-options">
+                        <a class="mobile-options" href="/home">
                             <i class="ti-more"></i>
                         </a>
                     </div>
@@ -510,48 +506,6 @@ $(function() {
                             </li>
                         </ul>
                         <ul class="nav-right">
-                            <li class="header-notification">
-                                <a href="#!">
-                                    <i class="ti-bell"></i>
-                                    <span class="badge bg-c-pink"></span>
-                                </a>
-                                <ul class="show-notification">
-                                    <li>
-                                        <h6>Notifications</h6>
-                                        <label class="label label-danger">New</label>
-                                    </li>
-                                    <!--<li>
-                                        <div class="media">
-                                            <img class="d-flex align-self-center img-radius" src="{{ asset('assets/images/avatar-4.jpg') }}" alt="Generic placeholder image">
-                                            <div class="media-body">
-                                                <h5 class="notification-user">John Doe</h5>
-                                                <p class="notification-msg">Lorem ipsum dolor sit amet, consectetuer elit.</p>
-                                                <span class="notification-time">30 minutes ago</span>
-                                            </div>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div class="media">
-                                            <img class="d-flex align-self-center img-radius" src="{{ asset('assets/images/avatar-3.jpg') }}" alt="Generic placeholder image">
-                                            <div class="media-body">
-                                                <h5 class="notification-user">Joseph William</h5>
-                                                <p class="notification-msg">Lorem ipsum dolor sit amet, consectetuer elit.</p>
-                                                <span class="notification-time">30 minutes ago</span>
-                                            </div>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div class="media">
-                                            <img class="d-flex align-self-center img-radius" src="{{ asset('assets/images/avatar-4.jpg') }}" alt="Generic placeholder image">
-                                            <div class="media-body">
-                                                <h5 class="notification-user">Sara Soudein</h5>
-                                                <p class="notification-msg">Lorem ipsum dolor sit amet, consectetuer elit.</p>
-                                                <span class="notification-time">30 minutes ago</span>
-                                            </div>
-                                        </div>
-                                    </li> -->
-                                </ul>
-                            </li>
                             <li class="user-profile header-notification">
                                 <a href="#!">
                                     <img src="{{ asset('assets/images/avatar-4.jpg')}}" class="img-radius" alt="User-Profile-Image">
@@ -559,21 +513,11 @@ $(function() {
                                     <i class="ti-angle-down"></i>
                                 </a>
                                 <ul class="show-notification profile-notification">
-                                   <!-- <li>
-                                        <a href="#!">
-                                            <i class="ti-settings"></i> Settings
+                                    <li>
+                                        <a href="/">
+                                            <i class="ti-desktop"></i> Back To Home
                                         </a>
                                     </li>
-                                    <li>
-                                        <a href="#">
-                                            <i class="ti-user"></i> Profile
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#">
-                                            <i class="ti-email"></i> My Messages
-                                        </a>
-                                    </li> -->
                                     <li>
                                         <a href="#">
                                             <i class="ti-lock"></i> Lock Screen
@@ -633,9 +577,9 @@ $(function() {
                             <div class="pcoded-navigatio-lavel" data-i18n="nav.category.navigation">Layout</div>
                             <ul class="pcoded-item pcoded-left-item">
                                 <li class="active">
-                                    <a href="/home" >
+                                    <a href="/" >
                                         <span class="pcoded-micon"><i class="ti-home"></i><b>H</b></span>
-                                        <span class="pcoded-mtext" data-i18n="nav.dash.main">Home</span>
+                                        <span class="pcoded-mtext" data-i18n="nav.dash.main">Back To Home</span>
                                         <span class="pcoded-mcaret"></span>
                                     </a>
                                 </li>
