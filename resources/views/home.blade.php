@@ -91,7 +91,7 @@
                                                                     <h4>{{$value->examtitle}}</h4>
                                                                     <div>
                                                                         <span class="f-left m-t-10 text-muted">
-                                                                            <a href="/exam/start/{{$value->examcode}}/{{$value->examtitle}}/{{$value->tname}}/{{$value->category}}/{{$value->examtime}}" class="show-modal btn btn-info btn-sm" >
+                                                                            <a href="{{url('')}}/exam/start/{{$value->examcode}}/{{$value->examtitle}}/{{$value->tname}}/{{$value->category}}/{{$value->examtime}}" class="show-modal btn btn-info btn-sm" >
                                                                                 <i class="icofont icofont-eye-alt"></i> Start Exam
                                                                             </a>
                                                                         </span>
@@ -149,14 +149,10 @@
             $("#add_subject_to_db").addClass('hidden'); 
             $("#add_subject_to_db_spin").removeClass('hidden'); 
             $('#add_subject_msg').text("Processing ... ");
-            //          alert($('input[name=subject]').val());
-            //         alert($('input[name=examcode]').val());
-            //          alert($('input[name=admin_id]').val());
-            //          alert($('input[name=admin_email]').val());
-
+            
                $.ajax({
                    type : 'POST',
-                   url : '/Addquestiontodb',
+                   url : "{{url('')}}/Addquestiontodb",
                    beforeSend: function(xhr){xhr.setRequestHeader('X-CSRF-TOKEN', $("#token").attr('content'));},
                    data : {
                     'subject': $('input[name=subject]').val(),
@@ -349,7 +345,7 @@
                                                 '</div>');
                $.ajax({
                    type : 'POST',
-                   url : '/getdetailresult',
+                   url : "{{url('')}}/getdetailresult",
                    beforeSend: function(xhr){xhr.setRequestHeader('X-CSRF-TOKEN', $("#token").attr('content'));},
                    data :{
                     'examcode': $examcode
@@ -439,7 +435,7 @@
                                                 '</div>');
                $.ajax({
                    type : 'POST',
-                   url : '/getsingleresult',
+                   url : "{{url('')}}/getsingleresult",
                    beforeSend: function(xhr){xhr.setRequestHeader('X-CSRF-TOKEN', $("#token").attr('content'));},
                    data :{
                     'examcode': $examcode
@@ -533,7 +529,7 @@
                                                 '</div>');
                $.ajax({
                    type : 'POST',
-                   url : '/updateresultlist',
+                   url : "{{url('')}}/updateresultlist",
                    beforeSend: function(xhr){xhr.setRequestHeader('X-CSRF-TOKEN', $("#token").attr('content'));},
                    data :{
                     'val': $val
@@ -590,7 +586,7 @@
                                                 '</div>');
                $.ajax({
                    type : 'POST',
-                   url : '/updateexamlist',
+                   url : "{{url('')}}/updateexamlist",
                    beforeSend: function(xhr){xhr.setRequestHeader('X-CSRF-TOKEN', $("#token").attr('content'));},
                    data :{
                     'val': $val
@@ -611,7 +607,7 @@
                                                                         '<h4>'+ data.exam[k].examtitle +'</h4>' +
                                                                         '<div>' +
                                                                             '<span class="f-left m-t-10 text-muted">' +
-                                                                                '<a href="/exam/start/'+data.exam[k].examcode +'/'+data.exam[k].examtitle+'/'+data.exam[k].tname+'/'+ data.exam[k].category+'/'+data.exam[k].examtime + '"  class="show-modal btn btn-info btn-sm" >' +
+                                                                                '<a href="{{url('')}}/exam/start/'+data.exam[k].examcode +'/'+data.exam[k].examtitle+'/'+data.exam[k].tname+'/'+ data.exam[k].category+'/'+data.exam[k].examtime + '"  class="show-modal btn btn-info btn-sm" >' +
                                                                                     '<i class="icofont icofont-eye-alt"></i> Start Exam' +
                                                                                 '</a>' +
                                                                             '</span>' +
@@ -671,7 +667,7 @@
             
                $.ajax({
                    type : 'POST',
-                   url : '/addquestion',
+                   url : "{{url('')}}/addquestion",
                    data: data,
                    contentType: false,
                    processData: false,
@@ -756,7 +752,7 @@
 
                $.ajax({
                    type : 'POST',
-                   url : 'ChangePassword',
+                   url : "{{url('')}}ChangePassword",
                    beforeSend: function(xhr){xhr.setRequestHeader('X-CSRF-TOKEN', $("#token").attr('content'));},
                    data :{
                     'id': $('input[name=uid]').val(),
@@ -820,7 +816,7 @@
                 console.log($("#delete_id").val())
                $.ajax({
                    type : 'POST',
-                   url : 'RemoveStudent',
+                   url : "{{url('')}}RemoveStudent",
                    beforeSend: function(xhr){xhr.setRequestHeader('X-CSRF-TOKEN', $("#token").attr('content'));},
                    data :{
                     'id': $('input[name=did]').val(),
@@ -857,7 +853,7 @@
                 $("#aespin").removeClass('hidden'); 
                $.ajax({
                    type : 'POST',
-                   url : 'addexam',
+                   url : "{{url('')}}addexam",
                    beforeSend: function(xhr){xhr.setRequestHeader('X-CSRF-TOKEN', $("#token").attr('content'));},
                    data :{
                         'tname': $('input[name=tname]').val(),
@@ -912,7 +908,7 @@
                             $('#password').val('');
                             $('#password_confirmation').val('');
                             
-                            window.location.href = "/addquestion/examcode/"+data.id + "/"+ data.examtitle+ "/"+ data.tname+ "/"+ data.category+ "/"+ data.examtime;
+                            window.location.href = "{{url('')}}/addquestion/examcode/"+data.id + "/"+ data.examtitle+ "/"+ data.tname+ "/"+ data.category+ "/"+ data.examtime;
                         }
                    }
                })

@@ -32,9 +32,9 @@
 
       <h3 style="color:#6da552">Thank You, Payment
           @if ($data['success'])
-              success <a href="/home">Home</a> 
+              success <a href="{{url('')}}/home">Home</a> 
           @else
-              <span>Fail</span> <a href="/order">Click here to Retry</a> 
+              <span>Fail</span> <a href="{{url('')}}/order">Click here to Retry</a> 
           @endif
       </h3>
 

@@ -4692,7 +4692,7 @@
 				//			$("#error_msg").addClass('hidden'); 
 						$.ajax({
 							type : 'POST',
-							url : '/admin/adminregister',
+							url : "{{url('')}}/admin/adminregister",
 							data: data,
 							contentType: false,
 							processData: false,
@@ -4729,8 +4729,7 @@
 									} else{
 										$('#registernew').text(""); 
 										$('#registernew').append('<i class="fa fa-spinner fa-spin" style="font-size:24px"></i> Redirecting ...');
-										window.location.replace("/admin");
-								//      console.log("ABC");
+										window.location.replace("{{url('')}}/admin");
 									}
 							}
 						}).fail(function (jqXHR, textStatus, error) {
@@ -4761,7 +4760,7 @@
 							
 						$.ajax({
 							type : 'POST',
-							url : '/admin/login',
+							url : "{{url('')}}/admin/login",
 							data: data,
 							contentType: false,
 							processData: false,
@@ -4779,8 +4778,7 @@
 									} else{
 										$('#adminlogin').text(""); 
 										$('#adminlogin').append('<i class="fa fa-spinner fa-spin" style="font-size:24px"></i> Redirecting ...');
-										window.location.replace("/admin");
-									//   console.log("ABC");
+										window.location.replace("{{url('')}}/admin");
 									}
 							}
 						}).fail(function (jqXHR, textStatus, error) {

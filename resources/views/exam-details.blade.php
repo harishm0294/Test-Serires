@@ -88,9 +88,8 @@
                   <a  class="nav-link js-scroll-trigger" href="{{ url('/home') }}">Back To Exam</a>
                 </li>
             @else
-            <!-- data-toggle="modal" data-target="#studentlogin" -->
               <li class="nav-item">
-                <a class="nav-link js-scroll-trigger" href="{{ url('/login') }}" >Student</a>
+                <a class="nav-link js-scroll-trigger" href="{{ url('/StudentLogin') }}" >Student</a> 
               </li>
               @endauth
             @endif
@@ -108,10 +107,10 @@
       </div>
     </nav>
     
-    <section class=" text-white" style="background-color: #72d042;">
+    <section class=" text-white" style="background-color: #72d042; padding: 5rem 0;">
       <div class="container text-center">
-        <h2 class="mb-4">{{ $category->category }}</h2>
-        <p class="mb-1"><b>Price: ₹ {{ $category->fee }}</b></p>
+        <h2 class="mb-1">{{ $category->category }}</h2>
+        <a href="{{url('/payment/category/'.$category->id)}}" class="btn btn-dark">Buy the series ₹ {{ $category->fee }}</a>
       </div>
     </section>
     <section class="">
@@ -124,32 +123,26 @@
         </div>
       </div>
       <div class="container text-center">
-        <div class="list-group">
-          <a href="#" class="list-group-item list-group-item-action flex-column align-items-start mb-2">
-            <div class="d-flex w-100 justify-content-between">
-              <h5 class="mb-1">List group item heading</h5>
-              <small>3 days ago</small>
-            </div>
-            <p class="mb-1">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p>
-            <small>Donec id elit non mi porta.</small>
-          </a>
-          <a href="#" class="list-group-item list-group-item-action flex-column align-items-start mb-2">
-            <div class="d-flex w-100 justify-content-between">
-              <h5 class="mb-1">List group item heading</h5>
-              <small class="text-muted">3 days ago</small>
-            </div>
-            <p class="mb-1">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p>
-            <small class="text-muted">Donec id elit non mi porta.</small>
-          </a>
-          <a href="#" class="list-group-item list-group-item-action flex-column align-items-start mb-2">
-            <div class="d-flex w-100 justify-content-between">
-              <h5 class="mb-1">List group item heading</h5>
-              <small class="text-muted">3 days ago</small>
-            </div>
-            <p class="mb-1">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p>
-            <small class="text-muted">Donec id elit non mi porta.</small>
-          </a>
+         <div class="list-group">
+          <style type="text/css">
+            .exam-detail{
+
+                font-size: 12px;
+            }
+          </style>
+          @foreach ($exams as $exam)
+          <div  class="list-group-item list-group-item-action flex-column align-items-start mb-2">
+              <h3 class="mb-1">{{$exam->examtitle}}</h3>
+              <small><b>Price: ₹ {{$exam->fee}}</b></small> 
+            
+            <p class="mb-1 exam-detail">Number Of Subjects: {{count($exam->subject)}}</p>
+            <p class="mb-1 exam-detail">Number Of Questions: {{count($exam->question)}}</p>
+
+            <a href="{{url('/payment/test/'.$exam->examcode)}}" class="btn btn-success">Buy Now</a>
+          </div>
+          @endforeach
         </div>  
+      </div> 
       </div>
     </section>
     <section id="contact" class="bg-dark text-white">
@@ -207,7 +200,7 @@
                 $("#error_msg").addClass('hidden'); 
                $.ajax({
                    type : 'POST',
-                   url : '/ajaxstudentlogin',
+                   url : "{{url('')}}/ajaxstudentlogin",
                    data: data,
                    contentType: false,
                    processData: false,
@@ -220,7 +213,6 @@
                         $('#std-login').append('<i class="fa fa-spinner fa-spin" style="font-size:24px"></i> Connecting ...');
                         console.log(data);
                         if(data.errors){
-                       //     alert("err");
                             $("#error_msg").removeClass('hidden'); 
                             $('#error_msg').text("credentials are not correct");
                             $('#std-login').text(""); 
@@ -228,7 +220,8 @@
                         } else{
                             $('#std-login').text(""); 
                             $('#std-login').append('<i class="fa fa-spinner fa-spin" style="font-size:24px"></i> Redirecting ...');
-                            window.location.replace("/home");
+
+                            window.location.replace("{{url('')}}/home");
                             $('#add_question_msg').text("Question Successfully Added");
                             console.log("ABC");
                         }

@@ -68,7 +68,6 @@ class AdminController extends Controller
             $student->name = $req->name;
             
             $student->password = bcrypt($req->password);
-            $student->fee = $req->fee;
             $student->contact = $req->contact;
             $student->save();
             return response()->json($student);

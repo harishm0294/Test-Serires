@@ -485,10 +485,10 @@ $(function() {
                         <a class="mobile-menu" id="mobile-collapse" href="#!">
                             <i class="ti-menu"></i>
                         </a>
-                        <a href="/home">
+                        <a href="{{url('')}}/home">
                            Test Series
                         </a>
-                        <a class="mobile-options" href="/home">
+                        <a class="mobile-options" href="{{url('')}}/home">
                             <i class="ti-more"></i>
                         </a>
                     </div>
@@ -514,7 +514,7 @@ $(function() {
                                 </a>
                                 <ul class="show-notification profile-notification">
                                     <li>
-                                        <a href="/">
+                                        <a href="{{url('/')}}">
                                             <i class="ti-desktop"></i> Back To Home
                                         </a>
                                     </li>
@@ -525,13 +525,13 @@ $(function() {
                                     </li>
                                     <li>
                                        
-                                        <a href="/Studentlogout"
+                                        <a href="{{url('')}}/Studentlogout"
                                             onclick="event.preventDefault();
                                                      document.getElementById('logout-form5').submit();">
                                             <i class="ti-layout-sidebar-left"></i> Logout
                                         </a>
 
-                                        <form id="logout-form5" action="/Studentlogout" method="POST" style="display: none;">
+                                        <form id="logout-form5" action="{{url('')}}/Studentlogout" method="POST" style="display: none;">
                                             {{ csrf_field() }}
                                         </form> 
                                     </li>
@@ -560,13 +560,13 @@ $(function() {
                                         <li class="more-details">
                                         <!--    <a href="#"><i class="ti-user"></i>View Profile</a>
                                             <a href="#!"><i class="ti-settings"></i>Settings</a> -->
-                                            <a href="/Studentlogout"
+                                            <a href="{{url('')}}/Studentlogout"
                                             onclick="event.preventDefault();
                                                      document.getElementById('logout-form3').submit();">
                                             <i class="ti-layout-sidebar-left"></i> Logout
                                         </a>
 
-                                        <form id="logout-form3" action="/Studentlogout" method="POST" style="display: none;">
+                                        <form id="logout-form3" action="{{url('')}}/Studentlogout" method="POST" style="display: none;">
                                             {{ csrf_field() }}
                                         </form> 
                                         </li>
@@ -577,7 +577,7 @@ $(function() {
                             <div class="pcoded-navigatio-lavel" data-i18n="nav.category.navigation">Layout</div>
                             <ul class="pcoded-item pcoded-left-item">
                                 <li class="active">
-                                    <a href="/" >
+                                    <a href="{{url('/')}}" >
                                         <span class="pcoded-micon"><i class="ti-home"></i><b>H</b></span>
                                         <span class="pcoded-mtext" data-i18n="nav.dash.main">Back To Home</span>
                                         <span class="pcoded-mcaret"></span>
@@ -585,25 +585,14 @@ $(function() {
                                 </li>
                                 
                                 <li class="pcoded-hasmenu">
-                                    <a href="/home">
+                                    <a href="{{url('/')}}/home">
                                         <span class="pcoded-micon"><i class="ti-layout-grid2-alt"></i></span>
                                         <span class="pcoded-mtext"  data-i18n="nav.basic-components.main">Exams</span>
                                         <span class="pcoded-mcaret"></span>
                                     </a>
-                                  <!--  <ul class="pcoded-submenu">
-                                       
-                                        <li class=" ">
-                                            <a href="icon-themify.html">
-                                                <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
-                                                <span class="pcoded-mtext" data-i18n="nav.basic-components.breadcrumbs">Icon</span>
-                                                <span class="pcoded-mcaret"></span>
-                                            </a>
-                                        </li>
-
-                                    </ul> -->
                                 </li>
                                 <li class="pcoded">
-                                    <a href="/result" >
+                                    <a href="{{url('/')}}/result" >
                                         <span class="pcoded-micon"><i class="ti-layout-grid2-alt"></i><b>R</b></span>
                                         <span class="pcoded-mtext" data-i18n="nav.dash.main">Result</span>
                                         <span class="pcoded-mcaret"></span>
@@ -620,17 +609,6 @@ $(function() {
                                         <span class="pcoded-mtext"  data-i18n="nav.basic-components.main">Quick Revision</span>
                                         <span class="pcoded-mcaret"></span>
                                     </a>
-                                   <!-- <ul class="pcoded-submenu">
-                                       
-                                        <li class=" ">
-                                            <a href="icon-themify.html">
-                                                <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
-                                                <span class="pcoded-mtext" data-i18n="nav.basic-components.breadcrumbs">Icon</span>
-                                                <span class="pcoded-mcaret"></span>
-                                            </a>
-                                        </li>
-
-                                    </ul> -->
                                 </li>
                                 <li class="pcoded-hasmenu">
                                     <a href="#" onclick="Notfound('Study Material' , 'Study Material Not Found, Your Institute has not Added !!!')">
@@ -638,19 +616,7 @@ $(function() {
                                         <span class="pcoded-mtext"  data-i18n="nav.basic-components.main">Study Material</span>
                                         <span class="pcoded-mcaret"></span>
                                     </a>
-                                 <!--   <ul class="pcoded-submenu">
-                                       
-                                        <li class=" ">
-                                            <a href="icon-themify.html">
-                                                <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
-                                                <span class="pcoded-mtext" data-i18n="nav.basic-components.breadcrumbs">Icon</span>
-                                                <span class="pcoded-mcaret"></span>
-                                            </a>
-                                        </li>
-
-                                    </ul>  -->
                                 </li>
-                                
                             </ul>
                             <div class="pcoded-navigatio-lavel" data-i18n="nav.category.forms">NewsFeed</div>
                             <ul class="pcoded-item pcoded-left-item">
@@ -707,19 +673,6 @@ $(function() {
         
     </div>
                                    
-
-
-
-<!--
-     <!-- Latest compiled and minified CSS --
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.4/css/bootstrap-select.min.css">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-
-<!-- Latest compiled and minified CSS --
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>-->
-
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>  
 
     <!-- Latest compiled and minified CSS -->
@@ -773,11 +726,10 @@ $(document).ready(function () {
 
 </script>
 
-
 <script src="//cdnjs.cloudflare.com/ajax/libs/chosen/1.1.0/chosen.jquery.min.js"></script>
 
 
-       <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
 <!-- Latest compiled and minified JavaScript -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>

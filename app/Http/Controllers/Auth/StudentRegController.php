@@ -24,13 +24,10 @@ class StudentRegController extends Controller
     //    DB::setDefaultConnection('default'); //admin section
         $this->middleware('guest');
     }
-    public function showLoginForm($id)
+    public function showLoginForm()
     {
-        $admin = DB::table('admins')->where('id',$id)->get();
-       // dump($admin[0]->id);
        $category = category::all();
-    //   dump($category);
-        return view('student-login',compact('admin','category'));
+       return view('student-login',compact('category'));
     }
 
     public function login(Request $request){
@@ -55,11 +52,10 @@ class StudentRegController extends Controller
             'email' => 'required|unique:admins|max:35',
             'password' => 'required|min:3|max:6'
         ]);
-        if($validator->fails()){
+        if ($validator->fails()) {
               return response()->json($validator);
             //    return Redirect::route('login#toregister')->withErrors($validator);
-        }
-        else{
+        } else {
             $admin = Admin::create([
                 'name' => $request->name,
                 'email' => $request->email,
@@ -74,31 +70,24 @@ class StudentRegController extends Controller
        $validator = Validator::make($req->all(), [
            'name' => 'required',
            'student_id' => 'required|unique:users|max:100',
-           'admin_id' => 'required',
            'password' => 'required|min:3|max:10|confirmed',
-           'admin_email' => 'required',
-           'contact' => 'numeric'
+           'contact' => 'numeric|min:10'
        ]);
 
-       if($validator->fails()){
+       if ($validator->fails()) {
            return response()->json(array('errors'=> $validator->errors()));
-       }
-       else{
-           $student = new Student;
-           $student->student_id = $req->student_id;
-           $student->name = $req->name;
-           $student->admin_id = $req->admin_id;
-           $student->admin_email = $req->admin_email;
-          
-           $student->password = bcrypt($req->password);
-           $student->fee = $req->fee;
-           $student->contact = $req->contact;
-           $student->category = $req->category;
-       //    $student->validity = $carbon->toDateTimeString();
-           $student->save();
+       } else {
+            $student = new Student;
 
-           return response()->json(array('msg'=> "Now, You Can Login!"));
-           
+            $student->student_id = $req->student_id;
+            $student->name = $req->name;
+            $student->password = bcrypt($req->password);
+            $student->contact = $req->contact;
+            $student->email = $req->email;
+        
+            $student->save();
+
+            return response()->json(array('msg'=> "Now, You Can Login!"));
        }
    }
 }

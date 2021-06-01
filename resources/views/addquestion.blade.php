@@ -717,7 +717,7 @@ function Delete_question(id){
 
                $.ajax({
                    type : 'POST',
-                   url : '/QuestionRandom',
+                   url : "{{url('')}}/QuestionRandom",
                    beforeSend: function(xhr){xhr.setRequestHeader('X-CSRF-TOKEN', $("#token").attr('content'));},
                    data :{
                     'examcode':'{{$id}}',
@@ -749,7 +749,7 @@ $(document).ready(function(){
                 console.log($("#del_q_id").val())
                $.ajax({
                    type : 'POST',
-                   url : '/RemoveQuestion',
+                   url : "{{url('')}}/RemoveQuestion",
                    beforeSend: function(xhr){xhr.setRequestHeader('X-CSRF-TOKEN', $("#token").attr('content'));},
                    data :{
                     'id': $('input[name=del_q_id]').val(),
@@ -781,7 +781,7 @@ $(document).ready(function(){
                 data.append('examcode', '{{$id}}');
                $.ajax({
                    type : 'POST',
-                   url : '/publish',
+                   url : "{{url('')}}/publish",
                    data: data,
                    contentType: false,
                    processData: false,
@@ -825,7 +825,7 @@ $(document).ready(function(){
                 data.append('examcode', '{{$id}}');
                $.ajax({
                    type : 'POST',
-                   url : '/publish',
+                   url : "{{url('')}}/publish",
                    data: data,
                    contentType: false,
                    processData: false,
@@ -869,7 +869,7 @@ $(document).ready(function(){
                 data.append('examcode', '{{$id}}');
                $.ajax({
                    type : 'POST',
-                   url : '/publish',
+                   url : "{{url('')}}/publish",
                    data: data,
                    contentType: false,
                    processData: false,

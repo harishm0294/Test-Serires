@@ -29,53 +29,6 @@
 
   <body id="page-top">
 
-    <!--Student Login  - ---------------------------- -->
-    <div class="modal fade" id="studentlogin" role="dialog">
-      <div class="modal-dialog">
-      
-        <!-- Modal content-->
-        <div class="modal-content">
-          <div class="modal-header" style="padding:35px 50px;">
-              <h4><span class="glyphicon glyphicon-lock"></span>Student Login</h4>
-              <button type="button" class="close" data-dismiss="modal">&times;</button>
-          </div>
-          <div class="modal-body" style="padding:40px 50px;">
-      
-            <form role="form">
-              <div class="form-group hidden">
-                <span class="alert-danger " id="error_msg"></span>
-              </div>
-              <div class="form-group">
-                <label for="usrname"><span class="glyphicon glyphicon-user"></span> Student Id</label>
-                <input type="text" class="form-control" id="loginstudent_id" name="loginstudent_id" placeholder="Enter student Id">
-                <span class="help-block hidden" id="error_student_id">
-                </span>     
-              </div>
-              <div class="form-group">
-                <label for="psw"><span class="glyphicon glyphicon-eye-open"></span> Password</label>
-                <input type="password" class="form-control" id="loginpassword" name="loginpassword" placeholder="Enter password">
-                <span class="help-block hidden" id="error_student_pass">
-                </span>
-              </div>
-              <div class="checkbox">
-                <label><input type="checkbox" name="remember" {{ old('remember') ? 'checked' : '' }} style="margin-right:15px" >Remember me</label>
-              </div>
-              </form>
-              <button id="std-login" class="btn btn-success btn-block"><span class="glyphicon glyphicon-off"></span> Login</button>
-          
-          </div>
-          <div class="modal-footer text-center">
-            <p>Not a member? <a href="#">Sign Up</a></p>
-            <p>Forgot <a href="#">Password?</a></p>
-            {{-- <a href="{{ url('auth/google') }}" style="margin-top: 20px;" class="btn btn-lg btn-success btn-block">
-              <strong>Login With Google</strong>
-            </a> --}}
-          </div>
-        </div>
-        
-      </div>
-    </div> 
-  <!-- EndLogin - ---------------------------- -->
     <!-- Navigation -->
     <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
       <div class="container">
@@ -91,12 +44,9 @@
                   <a  class="nav-link js-scroll-trigger" href="{{ url('/home') }}">Back To Exam</a>
                 </li>
             @else
-            <!-- data-toggle="modal" data-target="#studentlogin" -->
               <li class="nav-item">
-                <a class="nav-link js-scroll-trigger" href="#" data-toggle="modal" data-target="#studentlogin" >Student</a>
-                {{-- <a class="nav-link js-scroll-trigger" href="{{ url('/login') }}" >Student</a> --}}
+                <a class="nav-link js-scroll-trigger" href="{{ url('/StudentLogin') }}" >Student</a> 
               </li>
-              
               @endauth
             @endif
             <li class="nav-item">
@@ -269,58 +219,6 @@
     <!-- Custom scripts for this template -->
     <script src="landing/js/creative.min.js"></script>
 
-  <script>
-    // Add Question
-    $(document).ready(function(){
-            
-            $("#std-login").click(function(){
-              
-                $("#std-login").addClass('hidden'); 
-                $('#std-login').text(""); 
-                $('#std-login').append('<i class="fa fa-spinner fa-spin" style="font-size:24px"></i> Processing ...');
-
-                var data = new FormData();
-
-                data.append('student_id', $('input[name=loginstudent_id]').val());
-                data.append('password', $('input[name=loginpassword]').val());
-                data.append('remember', $('input[name=remember]').val());
-                $("#error_msg").text(''); 
-                $("#error_msg").addClass('hidden'); 
-               $.ajax({
-                   type : 'POST',
-                   url : '/ajaxstudentlogin',
-                   data: data,
-                   contentType: false,
-                   processData: false,
-                   beforeSend: function(xhr){xhr.setRequestHeader('X-CSRF-TOKEN', $("#token").attr('content'));},
-                
-                   success: function(data) {
-                       
-                        
-                        $('#std-login').text(""); 
-                        $('#std-login').append('<i class="fa fa-spinner fa-spin" style="font-size:24px"></i> Connecting ...');
-                        console.log(data);
-                        if(data.errors){
-                       //     alert("err");
-                            $("#error_msg").removeClass('hidden'); 
-                            $('#error_msg').text("credentials are not correct");
-                            $('#std-login').text(""); 
-                            $('#std-login').append('Login');
-                        } else{
-                            $('#std-login').text(""); 
-                            $('#std-login').append('<i class="fa fa-spinner fa-spin" style="font-size:24px"></i> Redirecting ...');
-                            window.location.replace("/home");
-                            $('#add_question_msg').text("Question Successfully Added");
-                            console.log("ABC");
-                        }
-                   }
-               }).fail(function (jqXHR, textStatus, error) {
-                        
-                        $('#errorModal').modal('show');
-                 });
-            });
-        });
-  </script>
   </body>
 
 </html>

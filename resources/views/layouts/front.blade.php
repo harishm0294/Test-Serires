@@ -578,13 +578,13 @@ $(function() {
                                     </li>
                                     <li>
                                        
-                                        <a href="/logout"
+                                        <a href="{{url('')}}/logout"
                                             onclick="event.preventDefault();
                                                      document.getElementById('logout-form1').submit();">
                                             <i class="ti-layout-sidebar-left"></i> Logout
                                         </a>
 
-                                        <form id="logout-form1" action="/logout" method="POST" style="display: none;">
+                                        <form id="logout-form1" action="{{url('')}}/logout" method="POST" style="display: none;">
                                             {{ csrf_field() }}
                                         </form> 
                                     </li>
@@ -613,13 +613,13 @@ $(function() {
                                         <li class="more-details">
                                          <!--   <a href="#"><i class="ti-user"></i>View Profile</a>
                                             <a href="#!"><i class="ti-settings"></i>Settings</a> -->
-                                            <a href="/logout"
+                                            <a href="{{url('')}}/logout"
                                             onclick="event.preventDefault();
                                                      document.getElementById('logout-form2').submit();">
                                             <i class="ti-layout-sidebar-left"></i> Logout
                                         </a>
 
-                                        <form id="logout-form2" action="/logout" method="POST" style="display: none;">
+                                        <form id="logout-form2" action="{{url('')}}/logout" method="POST" style="display: none;">
                                             {{ csrf_field() }}
                                         </form> 
                                         </li>
@@ -630,35 +630,35 @@ $(function() {
                             <div class="pcoded-navigatio-lavel" data-i18n="nav.category.navigation">Layout</div>
                             <ul class="pcoded-item pcoded-left-item">
                                 <li class="active">
-                                    <a href="/admin">
+                                    <a href="{{ url('/') }}/admin">
                                         <span class="pcoded-micon"><i class="ti-home"></i><b>H</b></span>
                                         <span class="pcoded-mtext" data-i18n="nav.dash.main">Home</span>
                                         <span class="pcoded-mcaret"></span>
                                     </a>
                                 </li>
                                 <li class="pcoded-hasmenu">
-                                    <a href="/liststudent">
+                                    <a href="{{ url('/') }}/liststudent">
                                         <span class="pcoded-micon"><i class="ti-layout-grid2-alt"></i></span>
                                         <span class="pcoded-mtext"  data-i18n="nav.basic-components.main">Students</span>
                                         <span class="pcoded-mcaret"></span>
                                     </a>
                                 </li>
                                 <li class="pcoded-hasmenu">
-                                    <a href="/Exams">
+                                    <a href="{{ url('/') }}/Exams">
                                         <span class="pcoded-micon"><i class="ti-layout-grid2-alt"></i></span>
                                         <span class="pcoded-mtext"  data-i18n="nav.basic-components.main">Test</span>
                                         <span class="pcoded-mcaret"></span>
                                     </a>
                                 </li>
                                 <li class="pcoded-hasmenu">
-                                    <a href="/exam">
+                                    <a href="{{ url('/') }}/exam">
                                         <span class="pcoded-micon"><i class="ti-layout-grid2-alt"></i></span>
                                         <span class="pcoded-mtext"  data-i18n="nav.basic-components.main">Exams</span>
                                         <span class="pcoded-mcaret"></span>
                                     </a>
                                 </li>
                                 <li class="pcoded-hasmenu">
-                                    <a href="/StudentResult">
+                                    <a href="{{ url('/') }}/StudentResult">
                                         <span class="pcoded-micon"><i class="ti-layout-grid2-alt"></i></span>
                                         <span class="pcoded-mtext"  data-i18n="nav.basic-components.main">Results</span>
                                         <span class="pcoded-mcaret"></span>
@@ -668,14 +668,14 @@ $(function() {
                             <div class="pcoded-navigatio-lavel" data-i18n="nav.category.forms"> Add New Exam &amp; Student</div>
                             <ul class="pcoded-item pcoded-left-item">
                                 <li>
-                                    <a href="/liststudent">
+                                    <a href="{{ url('/') }}/liststudent">
                                         <span class="pcoded-micon"><i class="ti-layers"></i><b>FC</b></span>
                                         <span class="pcoded-mtext" data-i18n="nav.form-components.main">Add New Student</span>
                                         <span class="pcoded-mcaret"></span>
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="/Exams" >
+                                    <a href="{{ url('/') }}/Exams" >
                                         <span class="pcoded-micon"><i class="ti-layers"></i><b>FC</b></span>
                                         <span class="pcoded-mtext" data-i18n="nav.form-components.main">Add New Exam</span>
                                         <span class="pcoded-mcaret"></span>
@@ -687,14 +687,14 @@ $(function() {
                             <div class="pcoded-navigatio-lavel" data-i18n="nav.category.forms">Notes &amp; Study Material</div>
                             <ul class="pcoded-item pcoded-left-item">
                                 <li>
-                                    <a href="/comingsoon">
+                                    <a href="{{ url('/') }}/comingsoon">
                                         <span class="pcoded-micon"><i class="ti-layers"></i><b>FC</b></span>
                                         <span class="pcoded-mtext" data-i18n="nav.form-components.main">Quick Revision</span>
                                         <span class="pcoded-mcaret"></span>
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="/comingsoon">
+                                    <a href="{{ url('/') }}/comingsoon">
                                         <span class="pcoded-micon"><i class="ti-layers"></i><b>FC</b></span>
                                         <span class="pcoded-mtext" data-i18n="nav.form-components.main">Study Material</span>
                                         <span class="pcoded-mcaret"></span>
@@ -707,12 +707,12 @@ $(function() {
                             <div class="pcoded-navigatio-lavel" data-i18n="nav.category.other">Send Message &amp; Notification</div>
                             <ul class="pcoded-item pcoded-left-item">
                                 <li class="pcoded-hasmenu ">
-                                    <a href="/comingsoon">
+                                    <a href="{{ url('/') }}/comingsoon">
                                         <span class="pcoded-micon"><i class="ti-direction-alt"></i><b>M</b></span>
                                         <span class="pcoded-mtext" data-i18n="nav.menu-levels.main">Mobile Message</span>
                                         <span class="pcoded-mcaret"></span>
                                     </a>
-                                    <a href="/comingsoon">
+                                    <a href="{{ url('/') }}/comingsoon">
                                         <span class="pcoded-micon"><i class="ti-direction-alt"></i><b>M</b></span>
                                         <span class="pcoded-mtext" data-i18n="nav.menu-levels.main">App Quick Notification</span>
                                         <span class="pcoded-mcaret"></span>
@@ -790,7 +790,7 @@ $(function() {
                                                 '</div>');
                $.ajax({
                    type : 'POST',
-                   url : '/getfulldetailresult',
+                   url : '{{url('')}}/getfulldetailresult',
                    beforeSend: function(xhr){xhr.setRequestHeader('X-CSRF-TOKEN', $("#token").attr('content'));},
                    data :{
                     'examcode': $examcode,
@@ -885,7 +885,7 @@ $(function() {
                                                 '</div>');
                $.ajax({
                    type : 'POST',
-                   url : '/getallresult',
+                   url : '{{url('')}}/getallresult',
                    beforeSend: function(xhr){xhr.setRequestHeader('X-CSRF-TOKEN', $("#token").attr('content'));},
                    data :{
                     'examcode': $examcode
@@ -988,7 +988,7 @@ $(function() {
                                                 '</div>');
                $.ajax({
                    type : 'POST',
-                   url : '/update_studentresultlist',
+                   url : '{{url('')}}/update_studentresultlist',
                    beforeSend: function(xhr){xhr.setRequestHeader('X-CSRF-TOKEN', $("#token").attr('content'));},
                    data :{
                     'val': $val
@@ -1046,7 +1046,7 @@ $(function() {
 
                $.ajax({
                    type : 'POST',
-                   url : '/Addquestiontodb',
+                   url : '{{url('')}}/Addquestiontodb',
                    beforeSend: function(xhr){xhr.setRequestHeader('X-CSRF-TOKEN', $("#token").attr('content'));},
                    data : {
                     'subject': $('input[name=subject]').val(),
@@ -1323,7 +1323,7 @@ $(function() {
                 
                $.ajax({
                    type : 'POST',
-                   url : 'liststudent',
+                   url : '{{url('')}}liststudent',
                    beforeSend: function(xhr){xhr.setRequestHeader('X-CSRF-TOKEN', $("#token").attr('content'));},
                    data :{
                     'student_id': $('input[name=student_id]').val(),
@@ -1422,35 +1422,14 @@ $(function() {
                 data.append('correct_option', $('select[name=correct_option]').val());
                 data.append('level', $('select[name=level]').val());
             
-           //     var postData = new FormData($("#modal_form_id")[0]);   
-           //     postData.append('subject_code': $('input[name=current_subject_id]').val(),
-           //     'subject': $('input[name=current_subject_name]').val(),);       
                $.ajax({
                    type : 'POST',
-                   url : '/addquestion',
+                   url : '{{url('')}}/addquestion',
                    data: data,
                    contentType: false,
                    processData: false,
                    beforeSend: function(xhr){xhr.setRequestHeader('X-CSRF-TOKEN', $("#token").attr('content'));},
-                /*   data : {
-                    'question': $('textarea[name=question]').val(),
-                    'option_A': $('input[name=option_A]').val(),
-                    'option_B': $('input[name=option_B]').val(),
-                    'option_C': $('input[name=option_C]').val(),
-                    'option_D': $('input[name=option_D]').val(),
-                    'marks': $('input[name=marks]').val(),
-                    'category': $('input[name=category]').val(),
-                    'examcode': $('input[name=examcode]').val(),
-                    'subject_code': $('input[name=current_subject_id]').val(),
-                    'subject': $('input[name=current_subject_name]').val(),
-                    'image': $('#image')[0].files[0],
-                    'negative_marks': $('input[name=negative_marks]').val(),
-                    'admin_email': $('input[name=admin_email]').val(),
-                    'admin_id': $('input[name=admin_id]').val(),
-                    'correct_option':  $('select[name=correct_option]').val(),
-                    'level':  $('select[name=level]').val(),
-                    },*/
-            //        processData: false,
+                
                    success: function(data){
                         $("#addquestion").removeClass('hidden'); 
                         $("#add_question_spin").addClass('hidden'); 
@@ -1501,8 +1480,8 @@ $(function() {
                             { 
                                 $('.negative_marks_error').removeClass('hidden'); 
                                 $('.negative_marks_error').text(data.errors.negative_marks);
+                            }else {    $('#add_question_msg').text("Error : "+data.errors);
                             }
-                            else {    $('#add_question_msg').text("Error : "+data.errors);}
 
                         }else{
                             $('#add_question_msg').text("Question Successfully Added");
@@ -1560,7 +1539,7 @@ $(document).ready(function(){
               
                $.ajax({
                    type : 'POST',
-                   url : '/updatequestion',
+                   url : "{{url('')}}/updatequestion",
                    data: data,
                    contentType: false,
                    processData: false,
@@ -1650,7 +1629,7 @@ $(document).ready(function(){
 
                $.ajax({
                    type : 'POST',
-                   url : 'ChangePassword',
+                   url : '{{url('')}}/ChangePassword',
                    beforeSend: function(xhr){xhr.setRequestHeader('X-CSRF-TOKEN', $("#token").attr('content'));},
                    data :{
                     'id': $('input[name=uid]').val(),
@@ -1699,7 +1678,6 @@ $(document).ready(function(){
                         //    $('#upassword').val('');
                         //    $('#upassword_confirmation').val('');
                         
-                            console.log("ABC");
                         }
                    }
                })
@@ -1715,7 +1693,7 @@ $(document).ready(function(){
                 console.log($("#delete_id").val())
                $.ajax({
                    type : 'POST',
-                   url : 'RemoveStudent',
+                   url : '{{url('')}}/RemoveStudent',
                    beforeSend: function(xhr){xhr.setRequestHeader('X-CSRF-TOKEN', $("#token").attr('content'));},
                    data :{
                     'id': $('input[name=did]').val(),
@@ -1752,7 +1730,7 @@ $(document).ready(function(){
                 $("#aespin").removeClass('hidden'); 
                $.ajax({
                    type : 'POST',
-                   url : 'addexam',
+                   url : '{{url('')}}addexam',
                    beforeSend: function(xhr){xhr.setRequestHeader('X-CSRF-TOKEN', $("#token").attr('content'));},
                    data :{
                         'tname': $('input[name=tname]').val(),
@@ -1807,7 +1785,7 @@ $(document).ready(function(){
                             $('#password').val('');
                             $('#password_confirmation').val('');
                             
-                            window.location.href = "/addquestion/examcode/"+data.examcode + "/"+ data.examtitle+ "/"+ data.tname+ "/"+ data.category+ "/"+ data.examtime;
+                            window.location.href = "{{url('')}}/addquestion/examcode/"+data.examcode + "/"+ data.examtitle+ "/"+ data.tname+ "/"+ data.category+ "/"+ data.examtime;
                         }
                    }
                })

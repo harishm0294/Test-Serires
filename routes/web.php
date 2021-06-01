@@ -76,7 +76,7 @@ Route::get('tt',function(){
         return view('payment/webhook');
     });
 
-    Route::get('StudentLogin/{id}', 'Auth\StudentRegController@showLoginForm');
+    Route::get('StudentLogin', 'Auth\StudentRegController@showLoginForm')->name('StudentLogin');
 
     Auth::routes();
     
@@ -94,6 +94,7 @@ Route::get('tt',function(){
 
     Route::post('/ajaxstudentsignup', 'Auth\StudentRegController@Student_SignUp');
     Route::post('/ajaxstudentlogin', 'Auth\LoginController@StudentLogin');
+  
 //    Route::get('/mytest', 'HomeController@mytest');
 
     //Admin
@@ -126,3 +127,8 @@ Route::get('tt',function(){
 Route::post('logout', 'AdminController@Logout');
    
 Route::get('/comingsoon', 'AdminController@comingsoon');
+
+Route::get('/payment/{type}/{id}', 'PaymentController@order')->name('paytmcall');
+
+Route::get('/payment/status', 'PaymentController@paymentCallback')->name('status');
+

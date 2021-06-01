@@ -42,9 +42,7 @@
         <div class="modal-body" style="padding:40px 50px;">
     
           <form role="form">
-            <div class="form-group hidden">
-              <span class="alert-danger " id="error_msg"> {{ $admin[0]->login_msg }}  </span>
-            </div>
+
             <div class="form-group">
               <label for="usrname"><span class="glyphicon glyphicon-user"></span> Student Id</label>
               <input type="text" class="form-control" id="loginstudent_id" name="loginstudent_id" placeholder="Enter student Id">
@@ -190,18 +188,10 @@
                 $('#std-signup').append('<i class="fa fa-spinner fa-spin" style="font-size:24px"></i> Processing ...');
 
                 var data = new FormData();
-                var selectednumbers = [];
                 var i = 0;
-                @foreach ($category as $cat)
-                  selectednumbers[i] = '{{ $cat->category }}';
-                  i++;
-                @endforeach
-
+                
                 data.append('name', $('input[name=student_name]').val());
                 data.append('student_id', $('input[name=stid]').val());
-                data.append('admin_id', '{{$admin[0]->id}}');
-                data.append('admin_email', '{{$admin[0]->email}}');
-                data.append('category', JSON.stringify(selectednumbers));
                 data.append('contact', $('input[name=contact]').val());
                 data.append('password', $('input[name=password]').val());
                 data.append('password_confirmation', $('input[name=password_confirmation]').val());
@@ -210,7 +200,7 @@
                 $("#error_msg").addClass('hidden'); 
                $.ajax({
                    type : 'POST',
-                   url : '/ajaxstudentsignup',
+                   url : '{{url('')}}/ajaxstudentsignup',
                    data: data,
                    contentType: false,
                    processData: false,
@@ -220,9 +210,8 @@
                        
                         $('#std-signup').text(""); 
                         $('#std-signup').append('<i class="fa fa-spinner fa-spin" style="font-size:24px"></i> Connecting ...');
-                  //      console.log(data);
+
                         if(data.errors){
-                       //     alert("err");
                             $("#rerror_msg").removeClass('hidden'); 
                             if(data.errors.name)
                                 $('#rerror_msg').text(data.errors.name);
@@ -239,17 +228,16 @@
 
                              $('#std-signup').text(""); 
                              $('#std-signup').append('Sign Up');
-                        } else if(data.msg){
-                       //     alert("err");
+                        } else if(data.msg) {
                             $('#create').modal('hide');
                             $("#error_msg").removeClass('hidden'); 
                             $('#error_msg').text("NOW ! You Can Login !");
                             
-                        } else{
+                        } else {
                             $('#std-signup').text(""); 
                             $('#std-signup').append('<i class="fa fa-spinner fa-spin" style="font-size:24px"></i> Redirecting ...');
-                            window.location.replace("/home");
-                      //      console.log("ABC");
+                            let path = "{{url('/home')}}"
+                            window.location.replace(path);
                         }
                    }
                }).fail(function (jqXHR, textStatus, error) {
@@ -280,20 +268,17 @@
                 $("#error_msg").addClass('hidden'); 
                $.ajax({
                    type : 'POST',
-                   url : '/ajaxstudentlogin',
+                   url : "{{url('')}}/ajaxstudentlogin",
                    data: data,
                    contentType: false,
                    processData: false,
                    beforeSend: function(xhr){xhr.setRequestHeader('X-CSRF-TOKEN', $("#token").attr('content'));},
                 
                    success: function(data) {
-                       
-                        
                         $('#std-login').text(""); 
                         $('#std-login').append('<i class="fa fa-spinner fa-spin" style="font-size:24px"></i> Connecting ...');
-                   //     console.log(data);
+                        
                         if(data.errors){
-                       //     alert("err");
                             $("#error_msg").removeClass('hidden'); 
                             $('#error_msg').text("credentials are not correct");
                             $('#std-login').text(""); 
@@ -301,9 +286,9 @@
                         } else{
                             $('#std-login').text(""); 
                             $('#std-login').append('<i class="fa fa-spinner fa-spin" style="font-size:24px"></i> Redirecting ...');
-                            window.location.replace("/home");
+                            var public_path = "{{url('')}}/home";
+                            window.location.replace(public_path);
                             $('#add_question_msg').text("Question Successfully Added");
-                         //   console.log("ABC");
                         }
                    }
                }).fail(function (jqXHR, textStatus, error) {
