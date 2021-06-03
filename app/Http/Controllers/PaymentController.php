@@ -35,11 +35,23 @@ class PaymentController extends Controller
       
         $fee = $examData->fee;
         $examcode = $examData->examcode;
-        
+
+        Payment::create([
+            '' => $fee,
+            '' => $examcode,
+            '' => ,
+        ]);
       } else {
         $categoryData = category::where('id', $id)->get();
       
-        dd($categoryData);
+        $fee = $categoryData->fee;
+        $examcode = $categoryData->examcode;
+        
+        Payment::create([
+            '' => $fee,
+            '' => $examcode,
+            '' => ,
+        ]);
       }
 
       $payment = PaytmWallet::with('receive');
