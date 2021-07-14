@@ -2,9 +2,13 @@
 
 namespace App\Http\Controllers;
 
+require_once("paytm/config_paytm.php");
+require_once("paytm/encdec_paytm.php");
+
 use App\Payment;
 use App\category;
 use App\Aexam;
+use Auth;
 
 use PaytmWallet;
 
@@ -32,66 +36,90 @@ class PaymentController extends Controller
     {
       if ($type == 'test') {
         $examData = Aexam::where('examcode', $id)->first();
-      
+        
         $fee = $examData->fee;
         $examcode = $examData->examcode;
-
-        Payment::create([
-            '' => $fee,
-            '' => $examcode,
-            '' => ,
+        
+        $paytmData = Payment::create([
+          'payment' => $fee,
+          'examcode' => $examcode,
+          'user_id' => Auth::id(),
+          'checksum' => "test",
+          'status' => 'pending',
+          'payment_mode' => 'paytm'
         ]);
       } else {
-        $categoryData = category::where('id', $id)->get();
-      
+        $categoryData = category::where('id', $id)->first();
         $fee = $categoryData->fee;
         $examcode = $categoryData->examcode;
         
-        Payment::create([
-            '' => $fee,
-            '' => $examcode,
-            '' => ,
+        $paytmData = Payment::create([
+          'payment' => $fee,
+          'category' => $examcode,
+          'user_id' => Auth::id(),
+          'checksum' => "test1",
+          'status' => 'pending',
+          'payment_mode' => 'paytm'
         ]);
       }
 
-      $payment = PaytmWallet::with('receive');
-        
-        /*$payment->prepare([
-          'order' => $order->id,
-          'user' => $user->id,
-          'mobile_number' => $user->phonenumber,
-          'email' => $user->email,
-          'amount' => $order->amount,
-          'callback_url' => 'http://example.com/payment/status'
-        ]);
-      */
-        return $payment->receive();
+        $paramList["MID"] = PAYTM_MERCHANT_MID;
+        $paramList["ORDER_ID"] = $paytmData->id;     
+        $paramList["CUST_ID"] = $paytmData->user_id;
+        $paramList["INDUSTRY_TYPE_ID"] = 'RETIAL';
+        $paramList["CHANNEL_ID"] = 'WEB';
+        $paramList["TXN_AMOUNT"] = $fee;
+        $paramList["WEBSITE"] = PAYTM_MERCHANT_WEBSITE;
+  
+        $paramList["CALLBACK_URL"] = url('/payment/status');
+        $paramList["MSISDN"] = '77777777';
+        $paramList["EMAIL"] ='foo@gmail.com';
+        $paramList["VERIFIED_BY"] = "EMAIL";
+        $paramList["IS_USER_VERIFIED"] = "YES";
+        $checkSum = getChecksumFromArray($paramList, PAYTM_MERCHANT_KEY);
+      ?>
+
+      <form id="myForm" action="<?php echo PAYTM_TXN_URL ?>" method="post">
+        <?php
+          foreach ($paramList as $a => $b) {
+            echo '<input type="hidden" name="'.htmlentities($a).'" value="'.htmlentities($b).'">';
+          }
+        ?>
+        <input type="hidden" name="CHECKSUMHASH" value="<?php echo $checkSum ?>">
+      </form>
+      <script type="text/javascript">
+          document.getElementById('myForm').submit();
+      </script>
+
+      <?php
     }
 
     /**
-     * Obtain the payment information.
+     * Obtain the paytm payment Response information.
      *
      * @return Object
      */
     public function paymentCallback()
     {
-        $transaction = PaytmWallet::with('receive');
-        
-        $response = $transaction->response(); // To get raw response as array
-        //Check out response parameters sent by paytm here -> http://paywithpaytm.com/developer/paytm_api_doc?target=interpreting-response-sent-by-paytm
-        
-        if($transaction->isSuccessful()){
-          //Transaction Successful
-        }else if($transaction->isFailed()){
-          //Transaction Failed
-        }else if($transaction->isOpen()){
-          //Transaction Open/Processing
-        }
-        $transaction->getResponseMessage(); //Get Response Message If Available
-        //get important parameters via public methods
-        $transaction->getOrderId(); // Get order id
-        $transaction->getTransactionId(); // Get transaction id
+      $paytmChecksum = "";
+      $paramList = array();
+      $isValidChecksum = "FALSE";
 
+      $paramList = $_POST;
+      
+      $data = [
+        'transaction_id' => $paramList['TXNID'],
+        'payment' => $paramList['TXNAMOUNT'],
+        'payment_mode' => $paramList['PAYMENTMODE'],
+        'status' => $paramList['STATUS'],
+        'checksum' => $paramList['CHECKSUMHASH'],
+        'bank_transaction' => $paramList['BANKTXNID'],
+      ];
 
+      Payment::where('id', $paramList['ORDERID'])
+      ->update($data);
+      
+      return redirect()->route('MyExams')->with('success', 'your message,here'); 
     }  
 }
+?>

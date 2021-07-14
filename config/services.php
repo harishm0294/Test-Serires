@@ -19,7 +19,7 @@ return [
         'redirect' => 'http://localhost:8000/auth/google/callback',
     ],
     'paytm-wallet' => [
-        'env' => env('PAYTM_ENVIRONMENT'), // values : (local | production)
+        'env' => 'production',//env('PAYTM_ENVIRONMENT'),// values : (local | production)
         'merchant_id' => env('PAYTM_MERCHANT_ID'),
         'merchant_key' => env('PAYTM_MERCHANT_KEY'),
         'merchant_website' => env('PAYTM_MERCHANT_WEBSITE'),

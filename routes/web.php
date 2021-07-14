@@ -130,5 +130,5 @@ Route::get('/comingsoon', 'AdminController@comingsoon');
 
 Route::get('/payment/{type}/{id}', 'PaymentController@order')->name('paytmcall');
 
-Route::get('/payment/status', 'PaymentController@paymentCallback')->name('status');
+Route::post('/payment/status', 'PaymentController@paymentCallback')->name('status');
 

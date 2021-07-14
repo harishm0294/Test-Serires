@@ -12,6 +12,7 @@ use App\ref_result;
 use response;
 use Illuminate\Support\Facades\input;
 use App\Http\Requests;
+use App\Payment;
 
 use Validator;
 use App\Http\Controllers\Controller;
@@ -40,8 +41,28 @@ class HomeController extends Controller
         $data = [
             'publish'  => 'Publish',
         ];
-        $exam = DB::table('exam')->where($data)->get();
+
+        $payments = Payment::where([
+            'user_id' => Auth::id(),
+            'status' => "TXN_SUCCESS"
+        ])->get();
         
+        $catIds = [];
+        $examIds = [];
+        foreach($payments as $key => $pay) {
+            if (!empty($pay->examcode)) {
+                $examIds[]= $pay->examcode;
+            } elseif(!empty($pay->category)) {
+                $catIds[]= $pay->category;
+            }
+        }
+
+        $exam = DB::table('exam')
+            ->where($data)
+            ->whereIn('examcode',$examIds)
+            ->orwhereIn('category',$catIds)
+            ->get();
+
         return view('home',compact('exam'));
     }
 
